@@ -16,4 +16,20 @@ with open('calls.csv', 'r') as f:
 任务1：
 短信和通话记录中一共有多少电话号码？每个号码只统计一次。
 输出信息：
-"There are <count> different telephone numbers in the records.""""
+"There are <count> different telephone numbers in the records."
+"""
+
+count_tele = []
+for i in texts:
+	if i[0] not in count_tele:
+		count_tele.append(i[0])
+	if i[1] not in count_tele:
+		count_tele.append(i[1])
+
+for i in calls:
+	if i[0] not in count_tele:
+		count_tele.append(i[0])
+	if i[1] not in count_tele:
+		count_tele.append(i[1])
+
+print('There are {} different telephone numbers in the records.'.format(len(count_tele)))
