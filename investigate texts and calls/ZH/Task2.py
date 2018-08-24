@@ -23,3 +23,22 @@ September 2016.".
 如果键不存在于字典内，将此键加入字典，并将它的值设为给定值。
 """
 
+phonecall = {}
+
+for i in calls:
+	if i[0] not in phonecall:
+		phonecall[i[0]] = int(i[3])
+	elif i[0] in phonecall:
+		phonecall[i[0]] +=  int(i[3])
+
+	if i[1] not in phonecall:
+		phonecall[i[1]] = int(i[3])
+	elif i[1] in phonecall:
+		phonecall[i[1]] += int(i[3])
+
+
+#SDFprint(phonecall)
+#print(phonecall)
+maxPhonecall  = max(phonecall, key = phonecall.get)
+print("{} spent the longest time, {} seconds, on the phone during September \
+2016.".format(maxPhonecall, phonecall.get(maxPhonecall)))
