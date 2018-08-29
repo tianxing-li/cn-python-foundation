@@ -71,11 +71,11 @@ def getMovies(category, location):
 
 categories = ['剧情', '喜剧', '动作', '爱情', '科幻', '悬疑', '惊悚', '恐怖', '犯罪', '同性', '音乐', 
 '歌舞', '传记', '历史', '战争', '西部', '奇幻', '冒险', '灾难', '武侠', '情色']
-locations = ['中国大陆']#, '美国', '香港', '台湾', '日本', '韩国', '英国', '法国', '德国', '意大利',
-#'西班牙', '印度', '泰国', '俄罗斯', '伊朗', '加拿大', '澳大利亚', '爱尔兰', '瑞典', '巴西', '丹麦']
+locations = ['中国大陆', '美国', '香港', '台湾', '日本', '韩国', '英国', '法国', '德国', '意大利',
+'西班牙', '印度', '泰国', '俄罗斯', '伊朗', '加拿大', '澳大利亚', '爱尔兰', '瑞典', '巴西', '丹麦']
 
-choiceCategories = random.choices(categories, k=1)
-print(choiceCategories)
+choiceCategories = random.choices(categories, k=3)
+#print(choiceCategories)
 #print(random.choices(categories, k=3))
 #print(locations)
 
@@ -98,3 +98,4 @@ with open("movies.csv", "w", encoding="utf-8-sig", newline="") as csvfile:
 csvfile.close()
 
 #任务6: 统计电影数据
+
