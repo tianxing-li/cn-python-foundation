@@ -17,6 +17,12 @@ def getMovieUrl(category, location):
 
 #任务2: 获取电影页面 HTML
 
+url = getMovieUrl('剧情','美国')
+
+html = ed.getHtml(url, loadmore = "true")
+
+#print(html)#test
+
 #任务3: 定义电影类
 
 #任务4: 获得豆瓣电影的信息
