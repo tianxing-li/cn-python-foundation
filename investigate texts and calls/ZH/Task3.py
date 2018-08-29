@@ -60,8 +60,6 @@ for i in calls:
                 call_list.append(i[1].split(' ')[0][:4])
 
 
-print('The numbers called by people in Bangalore have codes:')
-for i in sorted(list(call_list)):
-    print(i)
+print('The numbers called by people in Bangalore have codes:' + '\n' + '\n'.join(sorted(call_list)))
 print('%.2f%% percent of calls from fixed lines in Bangalore are calls\
 to other fixed lines in Bangalore.' %(call_2ba / call_from_ba * 100))
