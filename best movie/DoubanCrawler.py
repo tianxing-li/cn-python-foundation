@@ -24,6 +24,25 @@ html = ed.getHtml(url, loadmore = "true")
 #print(html)#test
 
 #任务3: 定义电影类
+class Movie(object):
+	"""name, rate, location, category, info_link, cover_link for Movie"""
+	def __init__(self, name, rate, location, category, info_link, cover_link):
+		super(Movie, self).__init__()
+		self.name, rate, location, category, info_link, cover_link
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #任务4: 获得豆瓣电影的信息
 
