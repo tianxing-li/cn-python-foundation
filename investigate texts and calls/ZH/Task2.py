@@ -38,7 +38,7 @@ for i in calls:
 
 
 #SDFprint(phonecall)
-#print(phonecall)
+#print(max(phonecall, key = phonecall.get))
 maxPhonecall  = max(phonecall, key = phonecall.get)
 print("{} spent the longest time, {} seconds, on the phone during September \
-2016.".format(maxPhonecall, phonecall.get(maxPhonecall)))
+2016.".format(maxPhonecall, max(phonecall.values())))
