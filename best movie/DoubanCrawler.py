@@ -80,10 +80,11 @@ choiceCategories = random.choices(categories, k=3)
 #print(type(choiceCategories))
 #print(random.choices(categories, k=3))
 #print(locations)
-"""
+
 moviesOutput = []
 #moviesOutput = [['光荣的日子', '9.1', '喜剧', '法国', 'https://movie.douban.com/subject/3724036/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1112469352.jpg'], ['加油,法国队!', '9.0', '喜剧', '法国', 'https://movie.douban.com/subject/3700124/', 'https://img3.doubanio.com/view/subject/l/public/s3754010.jpg'], ['Emilie Muller', '9.0', '喜剧', '法国', 'https://movie.douban.com/subject/5094893/', 'https://img3.doubanio.com/view/subject/l/public/s9087505.jpg'], ['我是海尔姆特', '9.4', '喜剧', '德国', 'https://movie.douban.com/subject/5360245/', 'https://img3.doubanio.com/view/subject/l/public/s4533690.jpg'], ['美丽人生', '9.5', '喜剧', '意大利', 'https://movie.douban.com/subject/1292063/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p510861873.jpg'], ['流浪者之歌', '9.0', '喜剧', '意大利', 'https://movie.douban.com/subject/1303525/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2384320756.jpg'], ['三傻大闹宝莱坞', '9.2', '喜剧', '印度', 'https://movie.douban.com/subject/3793023/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p579729551.jpg'], ['彩虹', '9.0', '喜剧', '加拿大', 'https://movie.douban.com/subject/1971485/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p503390374.jpg'], ['汉纳·加斯比：娜奈特', '9.5', '喜剧', '澳大利亚', 'https://movie.douban.com/subject/30253080/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2525732775.jpg'], ['土豆工厂', '9.4', '喜剧', '澳大利亚', 'https://movie.douban.com/subject/1793083/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2233036824.jpg'], ['迪兰·莫兰：是什么？', '9.2', '喜剧', '澳大利亚', 'https://movie.douban.com/subject/4850732/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2517976810.jpg'], ['Tim Minchin: So Live', '9.0', '喜剧', '澳大利亚', 'https://movie.douban.com/subject/3893420/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2509370314.jpg'], ['克拉姆一家2', '9.0', '喜剧', '丹麦', 'https://movie.douban.com/subject/1775004/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2512170335.jpg']]
 
+#search the data from the chosen catetories
 for category in choiceCategories:
     for location in locations:
         movies = getMovies(category, location)
@@ -91,12 +92,13 @@ for category in choiceCategories:
 
 #print(list(moviesOutput))
 
+#write data in csv
 with open("movies.csv", "w", newline="") as csvfile:
     movies_writer = csv.writer(csvfile, delimiter=",")
     for i in moviesOutput:
         movies_writer.writerow([i[0], i[1], i[2], i[3], i[4], i[5]])
 csvfile.close()
-"""
+
 
 #任务6: 统计电影数据
 
@@ -106,7 +108,7 @@ with open('movies.csv', 'r') as file:
     moviesSum = list(reader)
 
 #print(list(moviesSum))
-choiceCategories = ['音乐', '惊悚', '歌舞']
+#choiceCategories = ['音乐', '惊悚', '歌舞']
 
 sum = [0, 0, 0]
 locationSum0 = {}
