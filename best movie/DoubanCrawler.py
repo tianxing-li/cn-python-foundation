@@ -87,11 +87,8 @@ for category in choiceCategories:
 		movies = getMovies(category, location)
 		moviesOutput += movies
 
-print(list(moviesOutput))
+#print(list(moviesOutput))
 
-print(moviesOutput[0])
-print(moviesOutput[1][0])
-print(moviesOutput[1][1])
 with open("movies.csv", "w", newline="") as csvfile:
     movies_writer = csv.writer(csvfile, delimiter=",")
     for i in moviesOutput:
