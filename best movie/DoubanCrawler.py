@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup as bs
 import csv
 import random
 
+import heapq
+
 #任务1:获取每个地区、每个类型页面的URL
 
 """
@@ -75,17 +77,17 @@ locations = ['中国大陆', '美国', '香港', '台湾', '日本', '韩国', '
 '西班牙', '印度', '泰国', '俄罗斯', '伊朗', '加拿大', '澳大利亚', '爱尔兰', '瑞典', '巴西', '丹麦']
 
 choiceCategories = random.choices(categories, k=3)
-print(choiceCategories)
+#print(type(choiceCategories))
 #print(random.choices(categories, k=3))
 #print(locations)
-
+"""
 moviesOutput = []
 #moviesOutput = [['光荣的日子', '9.1', '喜剧', '法国', 'https://movie.douban.com/subject/3724036/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1112469352.jpg'], ['加油,法国队!', '9.0', '喜剧', '法国', 'https://movie.douban.com/subject/3700124/', 'https://img3.doubanio.com/view/subject/l/public/s3754010.jpg'], ['Emilie Muller', '9.0', '喜剧', '法国', 'https://movie.douban.com/subject/5094893/', 'https://img3.doubanio.com/view/subject/l/public/s9087505.jpg'], ['我是海尔姆特', '9.4', '喜剧', '德国', 'https://movie.douban.com/subject/5360245/', 'https://img3.doubanio.com/view/subject/l/public/s4533690.jpg'], ['美丽人生', '9.5', '喜剧', '意大利', 'https://movie.douban.com/subject/1292063/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p510861873.jpg'], ['流浪者之歌', '9.0', '喜剧', '意大利', 'https://movie.douban.com/subject/1303525/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2384320756.jpg'], ['三傻大闹宝莱坞', '9.2', '喜剧', '印度', 'https://movie.douban.com/subject/3793023/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p579729551.jpg'], ['彩虹', '9.0', '喜剧', '加拿大', 'https://movie.douban.com/subject/1971485/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p503390374.jpg'], ['汉纳·加斯比：娜奈特', '9.5', '喜剧', '澳大利亚', 'https://movie.douban.com/subject/30253080/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2525732775.jpg'], ['土豆工厂', '9.4', '喜剧', '澳大利亚', 'https://movie.douban.com/subject/1793083/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2233036824.jpg'], ['迪兰·莫兰：是什么？', '9.2', '喜剧', '澳大利亚', 'https://movie.douban.com/subject/4850732/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2517976810.jpg'], ['Tim Minchin: So Live', '9.0', '喜剧', '澳大利亚', 'https://movie.douban.com/subject/3893420/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2509370314.jpg'], ['克拉姆一家2', '9.0', '喜剧', '丹麦', 'https://movie.douban.com/subject/1775004/', 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2512170335.jpg']]
 
 for category in choiceCategories:
-	for location in locations:
-		movies = getMovies(category, location)
-		moviesOutput += movies
+    for location in locations:
+        movies = getMovies(category, location)
+        moviesOutput += movies
 
 #print(list(moviesOutput))
 
@@ -94,7 +96,69 @@ with open("movies.csv", "w", newline="") as csvfile:
     for i in moviesOutput:
         movies_writer.writerow([i[0], i[1], i[2], i[3], i[4], i[5]])
 csvfile.close()
-
+"""
 
 #任务6: 统计电影数据
+
+#open csv file
+with open('movies.csv', 'r') as file:
+    reader = csv.reader(file)
+    moviesSum = list(reader)
+
+#print(list(moviesSum))
+choiceCategories = ['音乐', '惊悚', '歌舞']
+
+sum = [0, 0, 0]
+locationSum0 = {}
+locationSum1 = {}
+locationSum2 = {}
+
+#sum each region's films num
+for i in moviesSum:
+    if i[2] == choiceCategories[0]:
+        sum[0] += 1
+        for n in locations:
+            if n == i[3]:
+                if n not in locationSum0:
+                    locationSum0[n] = 1
+                elif n in locationSum0:
+                    locationSum0[n] +=1
+    elif i[2] == choiceCategories[1]:
+        sum[1] += 1
+        for n in locations:
+            if n == i[3]:
+                if n not in locationSum1:
+                    locationSum1[n] = 1
+                elif n in locationSum1:
+                    locationSum1[n] +=1
+    elif i[2] == choiceCategories[2]:
+        sum[2] += 1
+        for n in locations:
+            if n == i[3]:
+                if n not in locationSum2:
+                    locationSum2[n] = 1
+                elif n in locationSum2:
+                    locationSum2[n] +=1
+
+
+#sort and find the biggest three region and num
+result = [heapq.nlargest(3, zip(locationSum0.values(), locationSum0.keys()))]
+result.append(heapq.nlargest(3, zip(locationSum1.values(), locationSum1.keys())))
+result.append(heapq.nlargest(3, zip(locationSum2.values(), locationSum2.keys())))
+
+#print(result)
+
+"""
+for i in range(3):
+    print('{}类别中，数量排名前三的地区有{}, {}和{}，分别占此类别电影总数的百分比为{:.2%}, {:.2%}\
+和{:.2%}'.format(choiceCategories[i], result[i][0][1], result[i][1][1], result[i][2][1],\
+(result[i][0][0]/sum[i]), (result[i][1][0]/sum[i]), (result[i][2][0]/sum[i])))
+"""
+
+#write the result into txt
+with open('output.txt', 'w') as op:
+    for i in range(3):
+        op.write('{}类别中，数量排名前三的地区有{}, {}和{}，分别占此类别电影总数的百分比为{:.2%}, {:.2%}\
+和{:.2%}.\n'.format(choiceCategories[i], result[i][0][1], result[i][1][1], result[i][2][1],\
+(result[i][0][0]/sum[i]), (result[i][1][0]/sum[i]), (result[i][2][0]/sum[i])))
 
